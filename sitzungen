@@ -1,0 +1,26 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="2">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="200" startPos="98" endPos="98" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\main.cpp" />
+            <File firstVisibleLine="65" xOffset="0" scrollWidth="720" startPos="2122" endPos="2122" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Game.h" />
+            <File firstVisibleLine="219" xOffset="0" scrollWidth="1540" startPos="4604" endPos="4604" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Game.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="710" startPos="284" endPos="284" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Character.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="730" startPos="680" endPos="680" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Character.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="640" startPos="162" endPos="95" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Quit.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="690" startPos="70" endPos="70" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Quit.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="900" startPos="383" endPos="383" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Place.h" />
+            <File firstVisibleLine="9" xOffset="0" scrollWidth="1040" startPos="546" endPos="546" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Place.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="690" startPos="190" endPos="190" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Inspect.h" />
+            <File firstVisibleLine="5" xOffset="0" scrollWidth="1240" startPos="496" endPos="496" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Inspect.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="690" startPos="303" endPos="179" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Go.h" />
+            <File firstVisibleLine="39" xOffset="0" scrollWidth="770" startPos="1803" endPos="1803" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Go.cpp" />
+            <File firstVisibleLine="75" xOffset="0" scrollWidth="1071" startPos="3682" endPos="3682" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Attack.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="621" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Attack.h" />
+            <File firstVisibleLine="89" xOffset="0" scrollWidth="1053" startPos="2070" endPos="2070" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Enemy.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="729" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Enemy.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="783" startPos="1062" endPos="975" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Help.cpp" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="621" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="C:\Users\Florian\Desktop\Dropbox\Dropbox\Project\Help.h" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>
