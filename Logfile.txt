@@ -1,0 +1,36 @@
+Inhalte:
+
+Potions
+- Mana Potions
+- Health Potions
+
+NPCs
+- Quest
+- non Quest
+
+Quests
+- types ?
+
+Magic
+- healing ?
+- Mana ?
+- AoE ?
+- stuns ?
+- special ?
+- books to learn ?
+- learning chance ?
+- spell level ?
+
+
+
+good story
+
+
+
+
+Bugs:
+take something ZAHL -> you have to open smth
+> should be "you cant do that"
+
+Game.cpp, keyword // Change
+> unsigned // signed

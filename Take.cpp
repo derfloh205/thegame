@@ -73,8 +73,8 @@ int Take::execute(Game& board, std::vector<std::string>& params) // need take al
                   {
 
                     // Delete Usable out of container
-                    all_container_in_place[i]->deleteUsableByIDI(given_inSomethingID); // Segmentation Fault
-                    cout << "Im here" << endl;
+                    all_container_in_place[i]->deleteUsableByIDI(given_inSomethingID);
+                    
                     // Put in inventory
                     board.takeUsable(all_usables_in_container[u]);
                     return 0;

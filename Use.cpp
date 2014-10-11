@@ -32,7 +32,6 @@ int Use::execute(Game& board, std::vector<std::string>& params)
           all_usables_here[i]->getinSomethingID() == IDI_to_use) // if found
           {
             board.useUsableByIDI(IDI_to_use);
-            cout << "You use " << all_usables_here[i]->getName() << endl;
             return 0;
           }
           

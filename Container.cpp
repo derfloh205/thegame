@@ -126,7 +126,6 @@ void Container::deleteUsableByIDI(unsigned int usableIDI_to_delete) // The usabl
   // Loop through all usables in the container
   for(unsigned int i = 0; i < all_usables_inside_.size(); i++)
   {
-      cout << "deleteUsableByIDI" << endl;
     if(usableIDI_to_delete == all_usables_inside_[i]->getinSomethingID()) // if found
     {
       all_usables_inside_.erase(all_usables_inside_.begin() + i);

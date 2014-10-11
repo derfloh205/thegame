@@ -188,6 +188,11 @@ void Game::decreaseHP(unsigned int decrease_by)
 void Game::addHP(unsigned int add_by)
 {
   playerHP_ += add_by;
+
+  if(playerHP_ > (int)player_maxHP_) // Change
+  {
+    playerHP_ = player_maxHP_;
+  }
 }
 
 void Game::addPlace(Place *new_place)
@@ -455,10 +460,45 @@ void Game::useUsableByIDI(unsigned int IDI_to_use)
   {
     if(all_usables_inventory_[i]->getinSomethingID() == IDI_to_use) // if found
     {
-      // delete it and then do something typespecific , heal or smth
-      
+      // do something typespecific , heal or smth, then delete it
+      if(playerHP_ == (int)player_maxHP_)                                       // Change
+      {
+        cout << "Your health is full." << endl;
+      }
+      else
+      {
+        cout << "You were healed by " << all_usables_inventory_[i]->getValue();
+        cout << " HP" << endl;
+
+        addHP(all_usables_inventory_[i]->getValue());
+        deleteUsableInventoryByIDI(IDI_to_use);
+      }
     }
   }
+}
+
+void Game::deleteWeaponInventoryByIDI(unsigned int IDI_to_delete)
+{
+  // Search through Weapons in inventory
+  for(unsigned int actual = 0; actual < all_weapons_inventory_.size(); actual++)
+  {
+    if(all_weapons_inventory_[actual]->getinSomethingID() == IDI_to_delete)
+    {
+      delete all_weapons_inventory_[actual];
+    }
+  }
+
+}
+void Game::deleteUsableInventoryByIDI(unsigned int IDI_to_delete)
+{
+  // Search through Usables in inventory
+  for(unsigned int actual = 0; actual < all_usables_inventory_.size(); actual++)
+  {
+    if(all_usables_inventory_[actual]->getinSomethingID() == IDI_to_delete)
+    {
+      delete all_usables_inventory_[actual];
+    }
+  }  
 }
 // -----------------------------------------------------------------------------
 

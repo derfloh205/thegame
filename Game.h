@@ -146,5 +146,7 @@ class Game
    void resetHP();
    void equipWeaponByIDI(unsigned int IDI_to_equip);
    void useUsableByIDI(unsigned int IDI_to_use);
+   void deleteWeaponInventoryByIDI(unsigned int IDI_to_delete);
+   void deleteUsableInventoryByIDI(unsigned int IDI_to_delete);
 };
 #endif
