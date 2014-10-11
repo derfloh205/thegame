@@ -25,6 +25,12 @@ Other
 - map command to show available directions ?
 - ASCII artwork ? maybe for each place ?
 
+Userfriendliness
+- Introduction when starting game !!!!!
+- is help command good enough ?
+- maybe help with parameters
+ > to help with specific issues
+
 
 
 good story
