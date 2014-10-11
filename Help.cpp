@@ -15,17 +15,19 @@ Help::~Help()
 int Help::execute(Game& board, std::vector<std::string>& params)
 {
   cout << "------------------------Available Commands-------------------------------" << endl;
-  cout << "character:                  Shows you information about yourself         " << endl;
-  cout << "inventory:                  Take a look inside your inventory            " << endl;
-  cout << "inspect ([enemy] [number]): Examine the current place or                 " << endl;
-  cout << "                            an enemy by his number                       " << endl;
-  cout << "go [direction]:             Walk along a certain direction               " << endl;
-  cout << "attack [enemy] [number]:    Attack an enemy, if there is more than one   " << endl;
-  cout << "                            you can say whom by mentioning his number    " << endl;
-  cout << "open [something] [number]:  open something and show the things within    " << endl;
-  cout << "take [something] [number]:  put something into your inventory            " << endl;
-  cout << "equip [something] [number]: equip something from your inventory          " << endl;
+  cout << "character                   Shows your stats like dmg, life or level     " << endl;
+  cout << "inventory                   Take a look inside your inventory            " << endl;
+  cout << "use <something> <number>    Use something out of your inventory          " << endl;
+  cout << "inspect                     Inspect your environment                     " << endl;
+  cout << "inspect <enemy> <number>    Examine an enemy by his number               " << endl;
+  cout << "inspect <direction*>         Show to where some direction leads          " << endl;
+  cout << "go <direction*>              Walk along a certain direction              " << endl;
+  cout << "attack <enemy> <number>     Attack an enemy, the <number> is otional     " << endl;
+  cout << "open <something> <number>   Open something to loot (e.g: a chest)        " << endl;
+  cout << "take <something> <number>   put something in your inventory              " << endl;
+  cout << "equip <something> <number>  equip something from your inventory          " << endl;
   cout << "help:                       Shows you all available Commands             " << endl;
   cout << "-------------------------------------------------------------------------" << endl;
+  cout << "*directions: you can go along and inspect directions like north, south .." << endl;
   return 0;
 }

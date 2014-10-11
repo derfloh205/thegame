@@ -21,6 +21,10 @@ Magic
 - learning chance ?
 - spell level ?
 
+Other
+- map command to show available directions ?
+- ASCII artwork ? maybe for each place ?
+
 
 
 good story
@@ -31,6 +35,3 @@ good story
 Bugs:
 take something ZAHL -> you have to open smth
 > should be "you cant do that"
-
-Game.cpp, keyword // Change
-> unsigned // signed
