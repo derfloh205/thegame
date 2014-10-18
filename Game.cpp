@@ -17,6 +17,7 @@
 #include "Inventory.h"
 #include "Equip.h"
 #include "Use.h"
+#include "Map.h"
 
 //Other
 #include "Enemy.h"
@@ -41,7 +42,7 @@ Game::Game()
   playerHP_ = 10;
   player_maxHP_ = 10;
   playerDMG_ = 3;
-  playerCRIT_ = 100;//25; // Critical Chance in % // DEBUG -> 100
+  playerCRIT_ = 30;//25; // Critical Chance in % // DEBUG -> 100
   playerLVL_ = 1;
   playerEXP_ = 0;
   playerNextEXP_ = 500;
@@ -77,6 +78,7 @@ void Game::makeCommands(std::map<string, Command*> &command_map)
   Inventory *inventory = new Inventory(INVENTORY);
   Equip *equip = new Equip(EQUIP);
   Use *use = new Use(USE);
+  Map *map = new Map(MAP);
   
   command_map[QUIT] = quit;
   command_map[CHARACTER] = character;
@@ -89,6 +91,7 @@ void Game::makeCommands(std::map<string, Command*> &command_map)
   command_map[INVENTORY] = inventory;
   command_map[EQUIP] = equip;
   command_map[USE] = use;
+  command_map[MAP] = map;
 }
 // Clear Heap of Command Objects
 void Game::deleteCommands(std::map<string, Command*> &commands_to_delete)
@@ -104,6 +107,7 @@ void Game::deleteCommands(std::map<string, Command*> &commands_to_delete)
   delete commands_to_delete[INVENTORY];
   delete commands_to_delete[EQUIP];
   delete commands_to_delete[USE];
+  delete commands_to_delete[MAP];
 }
 
 void Game::tolowerCase(string &str)
@@ -485,6 +489,7 @@ void Game::deleteWeaponInventoryByIDI(unsigned int IDI_to_delete)
     if(all_weapons_inventory_[actual]->getinSomethingID() == IDI_to_delete)
     {
       delete all_weapons_inventory_[actual];
+      all_weapons_inventory_.erase(all_weapons_inventory_.begin() + actual);
     }
   }
 
@@ -497,6 +502,7 @@ void Game::deleteUsableInventoryByIDI(unsigned int IDI_to_delete)
     if(all_usables_inventory_[actual]->getinSomethingID() == IDI_to_delete)
     {
       delete all_usables_inventory_[actual];
+      all_usables_inventory_.erase(all_usables_inventory_.begin() + actual);
     }
   }  
 }
@@ -564,13 +570,13 @@ void Game::READ()  // Test for now
   enemyID_toSave_, 0, 0, 3, 100, this));
   enemyID_toSave_++;
   
-  addEnemy(new Enemy("demon", 
-  "A rare and brutal creature from the abyss", 50,50,3,  // Enemy 2
+  addEnemy(new Enemy("bandit", 
+  "Some thug who seems to be fleeing from the town", 20,20,3,  // Enemy 2
   enemyID_toSave_, 0, 0, 23, 300, this));
   enemyID_toSave_++;
   
   addEnemy(new Enemy("troll", 
-  "It is dirty and angry about something", 10,10,2,  // Enemy 3
+  "It is dirty and angry about something", 13,16,2,  // Enemy 3
   enemyID_toSave_, 0, 0, 13, 220, this));
   enemyID_toSave_++;
   // ---------------------------------------------------------------------------
@@ -602,7 +608,7 @@ void Game::READ()  // Test for now
   addWeapon(new Weapon("common-sword", 2, 1, 39, 50, 2, weaponID_toSave_, 0, this)); // Weapon 1
   weaponID_toSave_++;
   
-   addWeapon(new Weapon("ANTI-DEMONSWORD", 7, 2, 96, 100, 1, weaponID_toSave_, 0, this)); // Weapon 2
+   addWeapon(new Weapon("broadsword", 4, 2, 96, 100, 1, weaponID_toSave_, 0, this)); // Weapon 2
   weaponID_toSave_++;
   // ---------------------------------------------------------------------------
 
@@ -610,7 +616,7 @@ void Game::READ()  // Test for now
   addUsable(new Usable("small-health-potion", 2, 1, usableID_toSave_, 0, this)); // Usable 1
   usableID_toSave_++;
 
-  addUsable(new Usable("big-health-potion", 5, 1, usableID_toSave_, 9, this)); // Usable 2
+  addUsable(new Usable("health-potion", 5, 1, usableID_toSave_, 9, this)); // Usable 2
   usableID_toSave_++;
   // ---------------------------------------------------------------------------
   
@@ -618,7 +624,6 @@ void Game::READ()  // Test for now
   // Add the enemys to the places
   all_places_[0]->addEnemy(1);
   all_places_[0]->addEnemy(1);
-  all_places_[1]->addEnemy(1);
   all_places_[1]->addEnemy(2);
   all_places_[2]->addEnemy(3);
   
@@ -633,8 +638,19 @@ void Game::READ()  // Test for now
 
   // Add Usables to Containers
   all_places_[0]->getContainer()[0]->addUsableByID(1); // 0
-  all_places_[0]->getContainer()[0]->addUsableByID(1); // 0
   all_places_[2]->getContainer()[0]->addUsableByID(2); // 0
+
+  // Then Display some Introduction to the game
+
+  cout << endl;
+  cout << "Welcome to <thegame>!" << endl;
+  cout << "Type <help> to view possible actions and commands." << endl << endl;
+  cout << "-------------------------------------------------------------------------------" ;
+  cout << endl;
+  cout << "You wake up in some forest... no memories, no orientation, no idea who you are." << endl;
+  cout << "Still lying on the ground you found some rude drawn map in your pockets." << endl;
+  cout << "As you struggle to stand up you can hear something snarling..." << endl;
+
 
 }
 // -----------------------------------------------------------------------------

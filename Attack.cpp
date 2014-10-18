@@ -43,6 +43,7 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
             if((all_enemys_here[i]->getName() == to_attack) && !already_attacked) // if found
             {
               board.setFight(true); // get In Fight
+
               if(board.checkCRIT())
               {
                unsigned int new_damage = board.getDMG() * 2;
@@ -61,6 +62,10 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
                 
                 all_enemys_here[i]->decreaseHP(new_damage);
               }
+
+              string tempname = all_enemys_here[i]->getName();
+              int tempmax = all_enemys_here[i]->getMaxHP();
+              int temphp = all_enemys_here[i]->getHP();
               
               // Check if the enemy is dead
               if( !(all_enemys_here[i]->checkHP()) )
@@ -91,6 +96,19 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
               }
               
               already_attacked = true;    
+
+             // Show enemies and your hp here ??
+              if(all_enemys_here[i] != NULL)
+              {
+                cout << tempname << ": " << temphp << "/" << tempmax;
+              }
+              else
+              {
+                cout << tempname << ": dead";
+              }
+
+              cout << "    You: " << board.getHP() << "/" << board.getMaxHP() << endl;
+              
                   
             }
           }

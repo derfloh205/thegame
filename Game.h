@@ -68,6 +68,7 @@ class Game
   const string INVENTORY = "inventory";
   const string EQUIP = "equip";
   const string USE = "use";
+  const string MAP = "map";
   
   public: 
   //Constructors

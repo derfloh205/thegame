@@ -18,6 +18,7 @@ int Help::execute(Game& board, std::vector<std::string>& params)
   cout << "character                   Shows your stats like dmg, life or level     " << endl;
   cout << "inventory                   Take a look inside your inventory            " << endl;
   cout << "use <something> <number>    Use something out of your inventory          " << endl;
+  cout << "map                         Open your map of the current place           " << endl;
   cout << "inspect                     Inspect your environment                     " << endl;
   cout << "inspect <enemy> <number>    Examine an enemy by his number               " << endl;
   cout << "inspect <direction*>         Show to where some direction leads          " << endl;

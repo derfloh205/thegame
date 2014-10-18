@@ -1,5 +1,3 @@
-Inhalte:
-
 Potions
 - Mana Potions
 - Health Potions
@@ -21,23 +19,77 @@ Magic
 - learning chance ?
 - spell level ?
 
-Other
-- map command to show available directions ?
+Items
+- magic items ?
+
+Character 
+- stats like strength dex or smth?
+- MANA !
+
+Trigger
+- Traps ?
+- open ways ?
+- quest triggers ?
+- when all or specific enemies are dead ?
+- triggers to other places ?
+  > door open.. ect..
+- triggers that spawn enemies in the place ?
+-> ghost out of chest e.g
+-> enemies come in after you pulled a trigger for a door in another place.. e.g
+
+New Ways (not only directions to go)
+- doors ?
+- gates ?
+- maybe special "Way" - Class
+- Should directions like north and south also be a way class ?
+- Better one vector with all ways possible then just 4 integers for each direction !!
+-> So endless possible ways !!
+- here the map command also needs a huge update then
+-> Inspect command will then need a certain text (maybe string in way object)
+  -> e.g a Way door_place_1, description: a door that leads to the next room or smth
+
+Combat
+- two handed and one handed speed should do something ?
+- maybe with one handed you attack twice ? so you have less damage overall but more chance to crit !!!
+- maybe you could equip a shield ? and then you have a chance to block incoming damage !! (not all but maybe 30% of it or smth)
+- armor should not have armor points but a chance to block incoming attacks like shields (maybe aside a permanent dmg reduction)
+- maybe display enemies and your HP after a fight !! (so you dont have to type character/inspect again and again)
+
+Map Command
 - ASCII artwork ? maybe for each place ?
+- Show enemies Yes or No ? and when yes.. how ?
+- show name of place in the middle !
+- Maybe the map how it is now will be only a minimap command
+-> maybe a "world map ?"
+  -> Map of all places near yours
 
 Userfriendliness
-- Introduction when starting game !!!!!
 - is help command good enough ?
 - maybe help with parameters
  > to help with specific issues
+- Maybe the "Open" - Command should be named "Examine" or something like this
 
+Code Specific
+- More inheritance !!
+- Items 
+  > Equipment
+  > Usables
+- Exceptions !!!!!!!!!!!!!!!!!!!!!
+-> catch bad alloc and bad cast !
+  -> most important
+-> Validate Error method in game needed !
+  -> like in Draughts !
+-> Test everything in valgrind
+  -> delete method to delete EVERYTHING in heap
 
-
-good story
-
-
-
+ ~invent good story~
 
 Bugs:
 take something ZAHL -> you have to open smth
 > should be "you cant do that"
+> when you have no potions there should be: you have no potions
+> a Container is empty when only no weapons are not in it !!!
+  > has to check for usables too !
+
+-> potions are not deleted right !!!!!
+-> segfault

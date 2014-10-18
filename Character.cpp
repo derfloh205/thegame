@@ -1,5 +1,6 @@
 #include "Character.h"
 #include <iostream>
+#include "Weapon.h"
 
 using std::cout;
 using std::endl;
@@ -17,6 +18,8 @@ int Character::execute(Game& board, std::vector<std::string>& params)
   cout << "HP:     " << board.getHP() << "/" << board.getMaxHP();
   if(board.getHP() <= 3 && board.getHP() > 0 )
   cout << " You are near death!" << endl;
+  else if(board.getHP() == 0)
+  cout << " You are Dead." << endl;
   else
   cout << endl;
   cout << "Damage: " << board.getDMG();
@@ -24,7 +27,12 @@ int Character::execute(Game& board, std::vector<std::string>& params)
   {
     cout << " (unarmed)";
   }
-    cout << endl;
+  else
+  {
+    cout << "(" << board.getWeapon()->getName() << ")" << endl;
+  }
+
+  cout << endl;
 
   cout << "Level: " << board.getLVL() << endl;
   cout << "Exp: " << board.getEXP() << "/" << board.getNextEXP() << endl; 

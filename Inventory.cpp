@@ -88,7 +88,7 @@ int Inventory::execute(Game& board, std::vector<std::string>& params)
     }
   }
 
-  if(usable_count == 1)
+  if(usable_count == 0)
   {
     cout << "           You have no potions" << endl;
   }

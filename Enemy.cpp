@@ -81,10 +81,18 @@ unsigned int Enemy::getEXP()
 void Enemy::addHP(unsigned int plusHP)
 {
   enemyHP_ += plusHP;
+  if(enemyHP_ > (int)enemy_maxHP_)
+  {
+    enemyHP_ = enemy_maxHP_;
+  }
 }
 void Enemy::decreaseHP(unsigned int minusHP)
 {
   enemyHP_ -= minusHP;
+  if(enemyHP_ < 0)
+  {
+    enemyHP_ = 0;
+  }
 }
 //------------------------------------------------------------------------
 
