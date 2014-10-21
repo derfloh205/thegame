@@ -12,14 +12,13 @@ class Weapon
 {
   private:
   string name_;
-  unsigned int damage_;
   unsigned int type_;
   /* Types:
   1 .. One Handed
   2 .. Two Handed
   */
-  int condition_;
-  unsigned int max_condition_;
+  unsigned int dice_amount_;
+  unsigned int dice_type_;
   unsigned int speed_;
   Game *game_;
   unsigned int weaponID_;
@@ -28,28 +27,23 @@ class Weapon
   
   
   public:
-  Weapon(string wc_name, unsigned int wc_damage, unsigned int wc_type,
-  unsigned int wc_condition, unsigned int wc_max_condition, unsigned int wc_speed, 
+  Weapon(string wc_name, unsigned int wc_type,
+  unsigned int wc_dice_amount, unsigned int wc_type_type, unsigned int wc_speed, 
   unsigned int wc_weaponID, unsigned int wc_insomethingID, Game *wc_game);
   
   // Getter
   string getName();
-  unsigned int getDMG();
   unsigned int getType();
-  int getCondition();
-  unsigned int getMaxCondition();
+  unsigned int getDiceAmount();
+  unsigned int getDiceType();
   unsigned int getSpeed();
   Container *getContainer();
   unsigned int getID();
   unsigned int getinSomethingID();
   
   // Setter
-  void resetCondition();
   void setinSomethingID(unsigned int newID);
   void setContainer(Container *newContainer);
-  
-  // Adder/Decreaser
-  void decreaseCondition(unsigned int minus_by);
   
   // Other
   Weapon* copy();

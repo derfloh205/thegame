@@ -37,7 +37,8 @@ class Game
   //Player
   int playerHP_;
   unsigned int player_maxHP_;
-  unsigned int playerDMG_;
+  unsigned int playerAttack_;
+  unsigned int playerAC_;
   unsigned int playerCRIT_;
   unsigned int playerEXP_;
   unsigned int playerNextEXP_;
@@ -69,6 +70,7 @@ class Game
   const string EQUIP = "equip";
   const string USE = "use";
   const string MAP = "map";
+  const string START_WEAPON = "rusty_dagger";
   
   public: 
   //Constructors
@@ -85,7 +87,8 @@ class Game
    void setQuitflag(bool newflag);
    void setHP(unsigned int newHP);
    void setNewPlace(unsigned int new_placeID);
-   void setDMG(unsigned int newDMG);
+   void setAttack(unsigned int newAttack);
+   void setAC(unsigned int newAC);
    void setDead(bool newbool);
    void setFight(bool newbool);
    void setCRIT(unsigned int newcrit);
@@ -101,11 +104,14 @@ class Game
    vector<Enemy*> getAllEnemys();
    vector<Usable*> getAllUsables();
    vector<Weapon*> getAllWeapons();
+   unsigned int getAttack();
    unsigned int getDMG();
+   unsigned int getAC();
    bool dead();
    bool getinFight();
    unsigned int getRandom(unsigned int botrange, unsigned int toprange);
    unsigned int getCRIT();
+   unsigned int getHIT();
    unsigned int getLVL();
    unsigned int getEXP();
    unsigned int getNextEXP();
@@ -123,7 +129,8 @@ class Game
    void addHP(unsigned int add_by);
    void addPlace(Place *new_place);
    void addEnemy(Enemy *new_enemy);
-   void addDMG(unsigned int plusDMG);
+   void addAttack(unsigned int plusAttack);
+   void addAC(unsigned int plusAC);
    void addEXP(unsigned int plusEXP);
    void addGold(unsigned int plusGold);
 

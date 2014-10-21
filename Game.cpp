@@ -39,10 +39,11 @@ Game::Game()
 {
   quitflag_ = false;
   // Test
-  playerHP_ = 10;
-  player_maxHP_ = 10;
-  playerDMG_ = 3;
-  playerCRIT_ = 30;//25; // Critical Chance in % // DEBUG -> 100
+  playerHP_ = 25;
+  player_maxHP_ = 25;
+  playerAttack_ = 2;
+  playerAC_ = 12;
+  playerCRIT_ = 30; // Critical Chance in % // DEBUG -> 100
   playerLVL_ = 1;
   playerEXP_ = 0;
   playerNextEXP_ = 500;
@@ -139,10 +140,16 @@ void Game::setNewPlace(unsigned int new_placeID)
   current_placeID_ = new_placeID;
 }
 
-void Game::setDMG(unsigned int newDMG)
+void Game::setAttack(unsigned int newAttack)
 {
-  playerDMG_ = newDMG;
+  playerAttack_ = newAttack;
 }
+
+void Game::setAC(unsigned int newAC)
+{
+  playerAC_ = newAC;
+}
+
 void Game::setDead(bool newbool)
 {
   is_dead_ = newbool;
@@ -209,9 +216,14 @@ void Game::addEnemy(Enemy *new_enemy)
   all_enemy_types_.push_back(new_enemy);
 }
 
-void Game::addDMG(unsigned int plusDMG)
+void Game::addAttack(unsigned int plusAttack)
 {
-  playerDMG_ += plusDMG;
+  playerAttack_ += plusAttack;
+}
+
+void Game::addAC(unsigned int plusAC)
+{
+  playerAC_ += plusAC;
 }
 
 void Game::addEXP(unsigned int plusEXP)
@@ -242,7 +254,11 @@ void Game::addContainer(Container *new_container)
 
 void Game::takeWeapon(Weapon *new_weapon)
 {
-  cout << "You put the " << new_weapon->getName() << " in your inventory." << endl;
+  if(new_weapon->getName() != START_WEAPON)
+  {
+    cout << "You put the " << new_weapon->getName() 
+    << " in your inventory." << endl;
+  }
 
   new_weapon->setinSomethingID(weaponID_inventory_toSave_);
   weaponID_inventory_toSave_++;
@@ -297,21 +313,42 @@ vector<Place*> Game::getAllPlaces()
   return all_places_;
 }
 
+unsigned int Game::getAttack()
+{
+  return playerAttack_;
+}
+
 unsigned int Game::getDMG()
 {
-  unsigned int full_dmg;
-
-  if(current_equipped_weapon_ != NULL)
+  // check if unarmed
+  if(current_equipped_weapon_ == NULL)
   {
-    full_dmg = playerDMG_ + current_equipped_weapon_->getDMG();
+    return 1;
   }
   else
   {
-    full_dmg = playerDMG_;
+    // calculate dmg from weapon
+    unsigned int dmg = 0;
+
+    for(unsigned int countdice = 0; countdice < 
+      current_equipped_weapon_->getDiceAmount(); countdice++)
+    {
+      dmg += getRandom(1 , current_equipped_weapon_->getDiceType());
+    }
+
+    return dmg;
   }
 
-  return full_dmg;
+  return 0;
 }
+
+unsigned int Game::getAC()
+{
+
+  // maybe return a full_AC based on equipment ?
+  return playerAC_;
+}
+
 bool Game::dead()
 {
   return is_dead_;
@@ -329,7 +366,8 @@ bool Game::getinFight()
 
 unsigned int Game::getRandom(unsigned int botrange, unsigned int toprange)
 {
-  srand (time(NULL));
+  //srand ((unsigned)time(0));
+
   unsigned int random = (rand() % toprange + botrange);
   
   return random;
@@ -338,6 +376,15 @@ unsigned int Game::getRandom(unsigned int botrange, unsigned int toprange)
 unsigned int Game::getCRIT()
 {
   return playerCRIT_;
+}
+
+unsigned int Game::getHIT()
+{
+  unsigned int hit_value;
+
+  hit_value = getRandom(1, 20) + playerAttack_;
+
+  return hit_value;
 }
 
 unsigned int Game::getEXP()
@@ -420,11 +467,13 @@ void Game::levelUP()
   
   playerNextEXP_ = newnextexp;
   playerEXP_ = newexp;
+
+  // improvement
+  playerAttack_ += 1;
+  player_maxHP_ += 5;
   
   // Reseting Health
   resetHP();
-  
-  // Changes in attributes
   
   playerLVL_++;
   
@@ -566,17 +615,17 @@ int Game::run()
 void Game::READ()  // Test for now
 {
   //Create Enemy types ---------------------------------------------------------
-  addEnemy(new Enemy("wolf", "It looks hungry and aggressive", 5, 5, 1, // Enemy 1
+  addEnemy(new Enemy("wolf", "It looks hungry and aggressive", 5, 5, 1, 1, 4, 9, // Enemy 1
   enemyID_toSave_, 0, 0, 3, 100, this));
   enemyID_toSave_++;
   
   addEnemy(new Enemy("bandit", 
-  "Some thug who seems to be fleeing from the town", 20,20,3,  // Enemy 2
+  "Some thug who seems to be fleeing from the town", 20, 20, 3, 2, 4, 14,  // Enemy 2
   enemyID_toSave_, 0, 0, 23, 300, this));
   enemyID_toSave_++;
   
   addEnemy(new Enemy("troll", 
-  "It is dirty and angry about something", 13,16,2,  // Enemy 3
+  "It is dirty and angry about something", 13, 16, 2, 1, 6, 12,  // Enemy 3
   enemyID_toSave_, 0, 0, 13, 220, this));
   enemyID_toSave_++;
   // ---------------------------------------------------------------------------
@@ -605,18 +654,24 @@ void Game::READ()  // Test for now
   // ---------------------------------------------------------------------------
   
   // Add Weapon Types ----------------------------------------------------------
-  addWeapon(new Weapon("common-sword", 2, 1, 39, 50, 2, weaponID_toSave_, 0, this)); // Weapon 1
+  addWeapon(new Weapon("common-sword", 1, 1, 6, 2, weaponID_toSave_, 0, this)); // Weapon 1
   weaponID_toSave_++;
   
-   addWeapon(new Weapon("broadsword", 4, 2, 96, 100, 1, weaponID_toSave_, 0, this)); // Weapon 2
+  addWeapon(new Weapon("broadsword", 2, 2, 4, 1, weaponID_toSave_, 0, this)); // Weapon 2
   weaponID_toSave_++;
+
+  // Start Weapon
+  Weapon* start_weapon = new Weapon(START_WEAPON, 1, 1, 4, 3, weaponID_toSave_, 0, this);
+  addWeapon(start_weapon); // Weapon 3
+  weaponID_toSave_++;
+  takeWeapon(start_weapon);
   // ---------------------------------------------------------------------------
 
   // Add Usable Types ----------------------------------------------------------
-  addUsable(new Usable("small-health-potion", 2, 1, usableID_toSave_, 0, this)); // Usable 1
+  addUsable(new Usable("small-health-potion", 8, 1, usableID_toSave_, 0, this)); // Usable 1
   usableID_toSave_++;
 
-  addUsable(new Usable("health-potion", 5, 1, usableID_toSave_, 9, this)); // Usable 2
+  addUsable(new Usable("health-potion", 15, 1, usableID_toSave_, 9, this)); // Usable 2
   usableID_toSave_++;
   // ---------------------------------------------------------------------------
   
@@ -648,8 +703,8 @@ void Game::READ()  // Test for now
   cout << "-------------------------------------------------------------------------------" ;
   cout << endl;
   cout << "You wake up in some forest... no memories, no orientation, no idea who you are." << endl;
-  cout << "Still lying on the ground you found some rude drawn map in your pockets." << endl;
-  cout << "As you struggle to stand up you can hear something snarling..." << endl;
+  cout << "On the ground you find some rude drawn map and an old rusty dagger." << endl;
+  cout << "This could be useful..." << endl << endl;
 
 
 }

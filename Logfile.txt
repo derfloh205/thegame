@@ -49,11 +49,10 @@ New Ways (not only directions to go)
   -> e.g a Way door_place_1, description: a door that leads to the next room or smth
 
 Combat
-- two handed and one handed speed should do something ?
-- maybe with one handed you attack twice ? so you have less damage overall but more chance to crit !!!
-- maybe you could equip a shield ? and then you have a chance to block incoming damage !! (not all but maybe 30% of it or smth)
-- armor should not have armor points but a chance to block incoming attacks like shields (maybe aside a permanent dmg reduction)
-- maybe display enemies and your HP after a fight !! (so you dont have to type character/inspect again and again)
+- get rid of speed or let it do something ?
+
+
+
 
 Map Command
 - ASCII artwork ? maybe for each place ?

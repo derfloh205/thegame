@@ -44,23 +44,24 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
             {
               board.setFight(true); // get In Fight
 
-              if(board.checkCRIT())
+              cout << endl; // to create some overview
+
+              unsigned int rolled = board.getHIT();
+              cout << "You rolled " << rolled << "." << endl;
+
+              if(rolled > all_enemys_here[i]->getAC())
               {
-               unsigned int new_damage = board.getDMG() * 2;
-               cout << "You got a CRITICAL " << all_enemys_here[i]->getName()
-               << " gets " << new_damage << "! damage" << endl;
-               
-               all_enemys_here[i]->decreaseHP(new_damage);
                 
-              }
-              else
-              {
-              
+                // Calculate Dmg
                 unsigned int new_damage = board.getDMG();
-                 cout << "You attack " << all_enemys_here[i]->getName() << ", dealing "
+                cout << "You hit " << all_enemys_here[i]->getName() << " for "
                 << new_damage << " damage!" << endl;
                 
                 all_enemys_here[i]->decreaseHP(new_damage);
+              }
+              else
+              {
+                cout << "You missed " << all_enemys_here[i]->getName() << "." << endl;
               }
 
               string tempname = all_enemys_here[i]->getName();
@@ -82,6 +83,7 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
               
               // Let all left enemies in this place counterattack
               // Getting new actual pointer for enemys
+              // Because it could appear that one of enemies is already dead.
               vector<Enemy*> all_enemys_to_attack = current_place->getEnemys();
               for(unsigned int x = 0; x < all_enemys_to_attack.size();x++)
               {
@@ -126,24 +128,31 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
             && (all_enemys_here[i]->getIDI() == idi_to_attack) ) // if there is one
             {
               board.setFight(true); // get In Fight
-              if(board.checkCRIT())
+
+              cout << endl; // to create some overview
+
+
+              unsigned int rolled = board.getHIT();
+              cout << "You rolled " << rolled << "." << endl;
+
+              if(rolled > all_enemys_here[i]->getAC())
               {
-               unsigned int new_damage = board.getDMG() * 2;
-               cout << "You got a CRITICAL " << all_enemys_here[i]->getName()
-               << " gets " << new_damage << "! damage" << endl;
-               
-               all_enemys_here[i]->decreaseHP(new_damage);
                 
-              }
-              else
-              {
-                unsigned int new_damage = board.getDMG();
-                cout << "You attack " << all_enemys_here[i]->getName() << " (" << 
-                all_enemys_here[i]->getIDI() << "), dealing "
+                // Calculate Dmg
+                unsigned int new_damage = board.getAttack(); // tochange
+                cout << "You hit " << all_enemys_here[i]->getName() << " for "
                 << new_damage << " damage!" << endl;
                 
                 all_enemys_here[i]->decreaseHP(new_damage);
               }
+              else
+              {
+                cout << "You missed " << all_enemys_here[i]->getName() << "." << endl;
+              }
+
+              string tempname = all_enemys_here[i]->getName();
+              int tempmax = all_enemys_here[i]->getMaxHP();
+              int temphp = all_enemys_here[i]->getHP();
                        
               
               // Check if the enemy is dead
@@ -167,16 +176,26 @@ int Attack::execute(Game& board, std::vector<std::string>& params)
                  all_enemys_to_attack[x]->attack();
               }
               
-                // look if there are enemys left
-                if(!all_enemys_to_attack.size())
-                {
-                  //get out of fight
-                  board.setFight(false);
-                }
-               
-             
-              
+              // look if there are enemys left
+              if(!all_enemys_to_attack.size())
+              {
+                //get out of fight
+                board.setFight(false);
+              }
+
               already_attacked = true; 
+
+                           // Show enemies and your hp here ??
+              if(all_enemys_here[i] != NULL)
+              {
+                cout << tempname << ": " << temphp << "/" << tempmax;
+              }
+              else
+              {
+                cout << tempname << ": dead";
+              }
+
+              cout << "    You: " << board.getHP() << "/" << board.getMaxHP() << endl;
             }          
           }
           

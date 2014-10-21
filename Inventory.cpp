@@ -60,9 +60,8 @@ int Inventory::execute(Game& board, std::vector<std::string>& params)
       cout << "Unknown";
     }
 
-    cout << " Speed: " << all_weapons_here[weopen_count]->getSpeed();
-    cout << " Damage: " << all_weapons_here[weopen_count]->getDMG();
-    cout << " Condition: " << all_weapons_here[weopen_count]->getCondition() << "/" << all_weapons_here[weopen_count]->getMaxCondition();
+    cout << " Damage: " << all_weapons_here[weopen_count]->getDiceAmount() 
+    << "d" << all_weapons_here[weopen_count]->getDiceType();
     cout << endl;
 
   }

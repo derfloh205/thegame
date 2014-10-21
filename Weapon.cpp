@@ -8,15 +8,14 @@ using std::string;
 using std::cout;
 using std::endl;
 
-Weapon::Weapon(string wc_name, unsigned int wc_damage, unsigned int wc_type,
-  unsigned int wc_condition, unsigned int wc_max_condition, unsigned int wc_speed, 
+Weapon::Weapon(string wc_name, unsigned int wc_type,
+  unsigned int wc_dice_amount, unsigned int wc_dice_type, unsigned int wc_speed, 
   unsigned int wc_weaponID, unsigned int wc_insomethingID, Game *wc_game)
 {
   name_ = wc_name;
-  damage_ = wc_damage;
   type_ = wc_type;
-  condition_ = wc_condition;
-  max_condition_ = wc_max_condition;
+  dice_amount_ = wc_dice_amount;
+  dice_type_ = wc_dice_type;
   speed_ = wc_speed;
   weaponID_ = wc_weaponID;
   in_somethingID_ = wc_insomethingID;
@@ -30,21 +29,17 @@ string Weapon::getName()
 {
   return name_;
 }
-unsigned int Weapon::getDMG()
-{
-  return damage_;
-}
 unsigned int Weapon::getType()
 {
   return type_;
 }
-int Weapon::getCondition()
+unsigned int Weapon::getDiceAmount()
 {
-  return condition_;
+  return dice_amount_;
 }
-unsigned int Weapon::getMaxCondition()
+unsigned int Weapon::getDiceType()
 {
-  return max_condition_;
+  return dice_type_;
 }
 unsigned int Weapon::getSpeed()
 {
@@ -66,10 +61,6 @@ unsigned int Weapon::getinSomethingID()
 
 // Setter ----------------------------------------------------------------------
 //
-void Weapon::resetCondition()
-{
-  condition_ = max_condition_;
-}
 void Weapon::setinSomethingID(unsigned int newID)
 {
   in_somethingID_ = newID;
@@ -81,19 +72,6 @@ void Weapon::setContainer(Container *newContainer)
 
 // -----------------------------------------------------------------------------
 
-// Adder / Decreaser -----------------------------------------------------------
-//
-void Weapon::decreaseCondition(unsigned int minus_by)
-{
-  condition_ -= minus_by;
-  
-  if(condition_ < 0)
-  {
-    condition_ = 0;
-  }
-}
-// -----------------------------------------------------------------------------
-
 // Other -----------------------------------------------------------------------
 //
 
@@ -101,10 +79,9 @@ Weapon* Weapon::copy()
 {
   Weapon* new_weapon = new Weapon(
   name_,
-  damage_,
   type_,
-  condition_,
-  max_condition_,
+  dice_amount_,
+  dice_type_,
   speed_,
   weaponID_,
   in_somethingID_,

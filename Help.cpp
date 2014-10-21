@@ -21,8 +21,8 @@ int Help::execute(Game& board, std::vector<std::string>& params)
   cout << "map                         Open your map of the current place           " << endl;
   cout << "inspect                     Inspect your environment                     " << endl;
   cout << "inspect <enemy> <number>    Examine an enemy by his number               " << endl;
-  cout << "inspect <direction*>         Show to where some direction leads          " << endl;
-  cout << "go <direction*>              Walk along a certain direction              " << endl;
+  cout << "inspect <direction*>        Show to where some direction leads           " << endl;
+  cout << "go <direction*>             Walk along a certain direction               " << endl;
   cout << "attack <enemy> <number>     Attack an enemy, the <number> is optional    " << endl;
   cout << "open <something> <number>   Open something to loot (e.g: a chest)        " << endl;
   cout << "take <something> <number>   put something in your inventory              " << endl;

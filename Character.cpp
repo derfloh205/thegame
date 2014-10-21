@@ -22,18 +22,25 @@ int Character::execute(Game& board, std::vector<std::string>& params)
   cout << " You are Dead." << endl;
   else
   cout << endl;
-  cout << "Damage: " << board.getDMG();
+  cout << "Attack: " << board.getAttack() << endl;
+  cout << "Damage: ";
+
+  // This should be with the new Damage label then
   if(board.getWeapon() == NULL)
   {
+    cout << board.getDMG();
     cout << " (unarmed)";
   }
   else
   {
-    cout << "(" << board.getWeapon()->getName() << ")" << endl;
+    cout << board.getWeapon()->getDiceAmount() << "d" << board.getWeapon()->
+      getDiceType();
+    cout << " (" << board.getWeapon()->getName() << ")";
   }
 
   cout << endl;
 
+  cout << "Armorclass: " << board.getAC() << endl;
   cout << "Level: " << board.getLVL() << endl;
   cout << "Exp: " << board.getEXP() << "/" << board.getNextEXP() << endl; 
   cout << "Gold: " << board.getGold() << endl;

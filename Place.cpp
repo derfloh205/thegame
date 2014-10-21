@@ -71,7 +71,8 @@ vector<Container*> Place::getContainer()
 
 //Adder ------------------------------------------------------------------------
 //
-void Place::addEnemy(unsigned int enemy_id)
+// could me much easier with copyconstructor for enemy.. ?
+void Place::addEnemy(unsigned int enemy_id) 
 {
   vector<Enemy*> all_enemy_types = board_->getAllEnemys();
   Enemy *to_be_copied = all_enemy_types[enemy_id - 1];
@@ -80,12 +81,16 @@ void Place::addEnemy(unsigned int enemy_id)
   string info = to_be_copied->getInfo();
   int hp = to_be_copied->getHP();
   unsigned int maxhp = to_be_copied->getMaxHP();
-  unsigned int dmg = to_be_copied->getDMG();
+  unsigned int attack = to_be_copied->getAttack();
+  unsigned int diceamount = to_be_copied->getDiceAmount();
+  unsigned int dicetype = to_be_copied->getDiceType();
+  unsigned int ac = to_be_copied->getAC();
   unsigned int enemyid = to_be_copied->getID();
   unsigned int gold = to_be_copied->getGold();
   unsigned int exp = to_be_copied->getEXP();
   
-  Enemy *new_enemy = new Enemy(name, info, hp, maxhp, dmg, enemyid, placeID_, 
+  Enemy *new_enemy = new Enemy(name, info, hp, maxhp, attack, diceamount, 
+    dicetype, ac, enemyid, placeID_, 
   current_enemy_IPI_, gold, exp, board_);
 
   all_enemys_.push_back(new_enemy);
