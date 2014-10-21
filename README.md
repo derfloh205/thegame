@@ -72,6 +72,7 @@ Userfriendliness
 - maybe help with parameters
  > to help with specific issues
 - Maybe the "Open" - Command should be named "Examine" or something like this
+- make an endl after each command ! like attack 
 
 Code Specific
 - More inheritance !!

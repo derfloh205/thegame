@@ -38,7 +38,7 @@ cleanw :
 valgrind:
 	valgrind --tool=memcheck --leak-check=full ./$(EXECUTABLE)
 
-#make submission zip archive for PALME
+#make submission zip
 submission:
 	zip $(SUBMISSION).zip *.cpp *.h Makefile
 
@@ -46,3 +46,6 @@ submission:
 
 #The dependencies:
 -include $(wildcard *.d)
+
+run:	
+		./game
