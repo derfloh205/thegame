@@ -56,9 +56,6 @@ Combat
 - like D & D !
  -> better random values !
 
-
-
-
 Map Command
 - ASCII artwork ? maybe for each place ?
 - Show enemies Yes or No ? and when yes.. how ?
@@ -85,6 +82,7 @@ Code Specific
 -> Validate Error method in game needed !
 -> Test everything in valgrind
   -> delete method to delete EVERYTHING in heap
+-> Use ncurses !!!!!!!
 
  ~invent good story~
 
